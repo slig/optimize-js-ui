@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Optimize-JS Tool</title>
+    <meta name="description" content="Optimize your JavaScript code for faster initial load time using this free tool. See speed boosts of up to 57% on Google Chrome.">
+
+    <link rel="stylesheet" href="/static/dist/stylesheets/main.css" media="screen" title="no title">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-87731501-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+  </head>
+  <body>
+
+    <div class="ui grid">
+
+      <div class="row">
+        <div class="column">
+          <div class="ui basic segment">
+            <h1>Optimize-JS Tool</h1>
+            <p>Optimize your JavaScript code for faster initial load by wrapping immediately-invoked functions in parentheses. The typical speed boost using this tool varies from 12.49% on Firefox 48 to 57.09% on Chrome 52! This tool is a Web UI to the <a href="https://github.com/nolanlawson/optimize-js">optimize-js</a> module created by Nolan Lawson.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui message internally celled equal width stackable grid">
+      <div class="row">
+        <div class="column">
+          <h3>What is this?</h3>
+          <p>This tools uses various heuristics to optimize IIFEs (immediately-invoked function expressions), by wrapping them in parentheses and helping the browser engine to run the code faster.</p>
+        </div>
+        <div class="column">
+          <h3>Say what?</h3>
+          <p><strong>Modern JS engines pre-parses functions before doing a full parse</strong>. If your code has functions that are immediately-invoked (and most minified code does), this tool will optimize it so that the browser engine can <strong>skip the pre-parse</strong> on those functions.</p>
+        </div>
+        <div class="column">
+          <h3>How does the optimization works?</h3>
+          <p>By inserting <code>'('</code> before functions that are known to be immediately-invoked (such as <code>function(){}()</code>, <code>!function(){}()</code>, etc.) and to functions that have a great chance of being IIFEs (such as functions passed directly as arguments to another function) we can help the browser to load the code faster.</p>
+          <p><a href="#FAQ">Read more in the FAQ...</a></p>
+        </div>
+        <div class="column">
+          <h3>Sounds great!</h3>
+          <p>Just paste your code or upload it below and click on "optimize".</p>
+          <p>Berware that although adding <code>'('</code> before known IIFEs always help, the other heuristics can hurt your performance in some cases. Read the the FAQ below.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ui container grid">
+
+      <div class="row">
+        <div class="column">
+          <div class="" id="root">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <h3 id="FAQ">FAQ</h3>
+          <p>Be sure to read the <a href="https://github.com/nolanlawson/optimize-js#faqs">official optimize-js FAQ</a>, this is just a TL;DR.</p>
+
+          <h4>How does it work?</h4>
+          <p>This tool looks for functions that are known to be immediately-invoked (i.e, they're executed immediately) and functions that <em>might be IIFEs</em> and inserts a parentheses <code>'('</code> before it. That way, JavaScript engines can be sure that they're in fact IIFEs and skip a pre-parse, thus making your JS code load faster.</p>
+
+          <h4>Is this optimization absolutely foolproof?</h4>
+          <p>No. Since it uses heuristics (i.e, reasonable guesses) to add the parentheses, sometimes your performance will be worse than before. The only way to know for sure is to test it.</p>
+
+          <h4>The optimized code is bigger than the original, why?</h4>
+          <p>Because this tool appends <code>'('</code> where they aren't absolutely required, but this extra parentheses can help the browser JS engine heuristic to avoid a pre-parse.</p>
+
+          <h4>Can I run a minifier such as UglifyJS or Google Closure Compiler on the optimized output?</h4>
+          <p>No, code uglification tools will strip unnecessary parentheses and undo any optimization done by this tool. <strong>You should minify your code before optimizing it here</strong>.</p>
+
+          <h4>Do you store my source code?</h4>
+          <p>No. The source is processed by our application server, then to the optimize-js library and back to the browser.</p>
+
+          <h4>I want to run this optimization on my own server/machine. Is it possible?</h4>
+          <p>Sure. This tool uses a free and open source (BSD-2-Clause licensed) written by Nolan Lawson. You can go to <a href="https://github.com/nolanlawson/optimize-js">its GitHub page</a> and read more there.</p>
+          <p>There are also a number of plugins, such as: <a href="https://github.com/vigneshshanmugam/optimize-js-plugin">webpack plugin</a>, <a href="https://github.com/prateekbh/gulp-optimize-js">gulp plugin</a> and <a href="https://github.com/sergejmueller/grunt-optimize-js">grunt plugin</a>.
+          <p>Also, this web app is open-source as well. <a href="https://github.com/slig/optimize-js-ui">Check out our GitHub</a>.</p>
+
+          <h4>Why did you do this tool?</h4>
+          <p>Since I already had coded another Web UI to <a href="https://javascriptobfuscator.herokuapp.com" target="_new>obfuscate javascript</a>, most of the code was already done, and it only took me a couple of hours on a saturday morning.</p>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="ui divider"></div>
+          <span>&copy; <a href="mailto:tserafim@gmail.com">Tiago Serafim</a> - <a href="https://github.com/slig/optimize-js-ui">source-code</a> - Powered by <a href="https://github.com/nolanlawson/optimize-js">optimize-js</a></span>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="/static/dist/bundle.js"></script>
+
+  </body>
+</html>

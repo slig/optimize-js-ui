@@ -1,0 +1,1 @@
+Do not obfuscate 3rd party libraries (vendors) such as jQuery, React, etc.
